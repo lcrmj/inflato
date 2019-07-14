@@ -1,25 +1,85 @@
 import React from 'react';
 import logo from './logo.svg';
+import store from './redux/';
 import './App.css';
+import {Provider} from "react-redux";
+import {createMuiTheme, makeStyles, IconButton, Typography} from "@material-ui/core";
+import Toolbar from "@material-ui/core/Toolbar";
+import MenuIcon from "@material-ui/icons/Menu";
+import Container from "@material-ui/core/Container";
+import AppBar from "@material-ui/core/AppBar";
+import ListaIndices from "./components/ListaIndices";
+import FiltroIndices from "./components/FiltroIndices";
+import { ThemeProvider } from '@material-ui/styles';
+import {green, teal} from "@material-ui/core/colors";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh'
+    },
+    appBarSpacer: theme.mixins.toolbar,
+    content: {
+        marginTop: theme.spacing(2),
+        flexGrow: 1,
+    },
+    layout: {
+        width: '100vw',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: theme.spacing(2)
+    },
+    footer: {
+        padding: theme.spacing(2),
+        marginTop: 'auto',
+        backgroundColor: theme.palette.grey["900"],
+    }
+}));
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#006B64'
+        }
+    }
+});
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    const classes = useStyles();
+
+    return (
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <div className={classes.root}>
+                    <AppBar position={"absolute"}>
+                        <Toolbar>
+                            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                                Inflato - UNIFESO
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <main className={classes.layout}>
+                        <div className={classes.appBarSpacer}/>
+                        <Container maxWidth={"lg"} className={classes.content}>
+                            <FiltroIndices/>
+                            <ListaIndices/>
+                        </Container>
+                    </main>
+                    <footer className={classes.footer}>
+                        <Container>
+                            <Grid container justify={"center"} alignItems={"center"} alignContent={"center"} direction={"column"}>
+                                <Grid item>
+                                    <img src={"http://www.unifeso.edu.br/images/logo/UNIFESO-BRANCO.png"} height={60}/>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                    </footer>
+                </div>
+            </ThemeProvider>
+        </Provider>
   );
 }
 
