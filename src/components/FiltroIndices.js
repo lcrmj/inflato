@@ -3,7 +3,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card";
 import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import {KeyboardDatePicker} from "@material-ui/pickers";
 import brLocale from 'date-fns/locale/pt-BR'
 import {startOfMonth} from 'date-fns';
 import {useDispatch, useSelector} from "react-redux";

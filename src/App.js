@@ -1,17 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import store from './redux/';
 import './App.css';
 import {Provider} from "react-redux";
-import {createMuiTheme, makeStyles, IconButton, Typography} from "@material-ui/core";
+import {createMuiTheme, makeStyles, Typography} from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
-import MenuIcon from "@material-ui/icons/Menu";
 import Container from "@material-ui/core/Container";
 import AppBar from "@material-ui/core/AppBar";
 import ListaIndices from "./components/ListaIndices";
 import FiltroIndices from "./components/FiltroIndices";
 import { ThemeProvider } from '@material-ui/styles';
-import {green, teal} from "@material-ui/core/colors";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
@@ -72,7 +69,7 @@ function App() {
                         <Container>
                             <Grid container justify={"center"} alignItems={"center"} alignContent={"center"} direction={"column"}>
                                 <Grid item>
-                                    <img src={"http://www.unifeso.edu.br/images/logo/UNIFESO-BRANCO.png"} height={60}/>
+                                    <img src={"http://www.unifeso.edu.br/images/logo/UNIFESO-BRANCO.png"} height={60} alt={"Logo da UNIFESO"}/>
                                 </Grid>
                             </Grid>
                         </Container>

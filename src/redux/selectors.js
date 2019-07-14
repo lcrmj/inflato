@@ -34,6 +34,7 @@ export const getIndicesByRange = createSelector(
             for (var group in groups) {
                 var groupIndices = groups[group];
                 var indiceFinal = groupIndices[groupIndices.length-1];
+                // eslint-disable-next-line no-loop-func
                 var indiceBase = indices.filter(indice => moment(indice.data).utc(false).isSame(moment(filteredDate.de).subtract(1, 'month'), 'month') &&
                                                             indice.titulo === group);
 
