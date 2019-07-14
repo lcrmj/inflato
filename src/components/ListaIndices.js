@@ -1,6 +1,5 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import Table from "@material-ui/core/Table";
 import Paper from "@material-ui/core/Paper";
 import TableHead from "@material-ui/core/TableHead";
