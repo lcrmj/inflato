@@ -7,13 +7,14 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import {getIndicesByRange} from "../redux/selectors";
+import EmptyState from "./EmptyState";
 
 const ListaIndices = () => {
 
     const indices = useSelector(getIndicesByRange);
 
     return (
-        <Paper>
+        indices.length > 0 ? <Paper>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -30,8 +31,8 @@ const ListaIndices = () => {
                     ))}
                 </TableBody>
             </Table>
-        </Paper>
-    )
+        </Paper> : <EmptyState/>
+    );
 };
 
 export default ListaIndices;

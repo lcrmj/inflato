@@ -2,8 +2,13 @@ import { createSelector } from 'reselect'
 import moment from "moment";
 
 const getFilterRange = (store) => store.indiceFilter;
-
 const getIndices = (store) => store.indices.all;
+const getCbDate = (store) => store.cestaBasicaFilter;
+const getValoresCestaBasica = (store) => store.cestaBasica;
+
+export const getValorCbByDate = createSelector([getValoresCestaBasica, getCbDate], (valoresCestaBasica, date) => {
+    return valoresCestaBasica.all.filter(x => moment(x.data).utc(false).isSame(date.value, 'month'))[0];
+});
 
 export const getIndicesByRange = createSelector(
     [getFilterRange, getIndices],

@@ -30,14 +30,14 @@ const FiltroIndices = () => {
     const classes = useStyles();
 
     function handleInitialDateChange(date) {
-        dispatch(setFilterRange(startOfMonth(date), filter.temp.ate));
+        dispatch(setFilterRange(startOfMonth(date), filter.aux.ate));
     }
 
     function handleFinalDateChange(date) {
-        dispatch(setFilterRange(filter.temp.de, date));
+        dispatch(setFilterRange(filter.aux.de, date));
     }
 
-    function consultarClickHandler(ev) {
+    function consultarClickHandler() {
         dispatch(applyRange());
     }
 
@@ -56,7 +56,7 @@ const FiltroIndices = () => {
                             format={"MM/yyyy"}
                             autoOk
                             views={["year", "month"]}
-                            value={filter.temp.de}
+                            value={filter.aux.de}
                             onChange={handleInitialDateChange}
                         />
                     </Grid>
@@ -71,11 +71,11 @@ const FiltroIndices = () => {
                             format={"MM/yyyy"}
                             autoOk
                             views={["year", "month"]}
-                            value={filter.temp.ate}
+                            value={filter.aux.ate}
                             onChange={handleFinalDateChange}
                         />
                     </Grid>
-                    <Grid item alignContent={"stretch"} alignItems={"str"}>
+                    <Grid item>
                         <Button variant="contained" color="primary" className={classes.button} onClick={consultarClickHandler}>
                             Consultar
                         </Button>

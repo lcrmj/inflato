@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import store from './redux/';
 import './App.css';
 import {Provider} from "react-redux";
@@ -10,6 +10,10 @@ import ListaIndices from "./components/ListaIndices";
 import FiltroIndices from "./components/FiltroIndices";
 import { ThemeProvider } from '@material-ui/styles';
 import Grid from "@material-ui/core/Grid";
+import ValorCestaBasica from "./components/ValorCestaBasica";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import FiltroCestaBasica from "./components/FiltroCestaBasica";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -17,7 +21,9 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         minHeight: '100vh'
     },
-    appBarSpacer: theme.mixins.toolbar,
+    appBarSpacer: {
+        ...theme.mixins.toolbar,
+    },
     content: {
         marginTop: theme.spacing(2),
         flexGrow: 1,
@@ -38,7 +44,10 @@ const useStyles = makeStyles(theme => ({
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#006B64'
+            main: '#006B64',
+        },
+        secondary: {
+            main: '#80cbc4'
         }
     }
 });
@@ -46,6 +55,8 @@ const theme = createMuiTheme({
 function App() {
 
     const classes = useStyles();
+    const [tabValue, setTabValue] = useState(1);
+
 
     return (
         <Provider store={store}>
@@ -57,17 +68,22 @@ function App() {
                                 Inflato - UNIFESO
                             </Typography>
                         </Toolbar>
+                        <Tabs value={tabValue} onChange={(_, newValue) => setTabValue(newValue)}>
+                            <Tab label={"IPC"}/>
+                            <Tab label={"Cesta Básica"}/>
+                        </Tabs>
                     </AppBar>
                     <main className={classes.layout}>
                         <div className={classes.appBarSpacer}/>
+                        <div className={classes.appBarSpacer}/>
                         <Container maxWidth={"lg"} className={classes.content}>
-                            <FiltroIndices/>
-                            <ListaIndices/>
+                            {tabValue === 0 && <div><FiltroIndices/><ListaIndices/></div>}
+                            {tabValue === 1 && <div><FiltroCestaBasica/><ValorCestaBasica/></div>}
                         </Container>
                     </main>
                     <footer className={classes.footer}>
                         <Container>
-                            <Grid container justify={"center"} alignItems={"center"} alignContent={"center"} direction={"column"}>
+                            <Grid container alignItems={"center"} direction={"column"}>
                                 <Grid item>
                                     <img src={"http://www.unifeso.edu.br/images/logo/UNIFESO-BRANCO.png"} height={60} alt={"Logo da UNIFESO"}/>
                                 </Grid>
