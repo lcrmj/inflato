@@ -55,7 +55,7 @@ const theme = createMuiTheme({
 function App() {
 
     const classes = useStyles();
-    const [tabValue, setTabValue] = useState(1);
+    const [tabValue, setTabValue] = useState(0);
 
 
     return (
