@@ -24,7 +24,7 @@ const ValorCestaBasica = () => {
     const valorCestaBasica = useSelector(getValorCbByDate);
 
     return (
-        valorCestaBasica != null ? <Paper className={classes.card}>{valorCestaBasica.valor}</Paper> : <EmptyState/>
+        valorCestaBasica != null ? <Paper className={classes.card}>{new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(valorCestaBasica.valor)}</Paper> : <EmptyState/>
     );
 };
 
